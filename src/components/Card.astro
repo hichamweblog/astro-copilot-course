@@ -1,0 +1,40 @@
+---
+// Define what props this component accepts
+interface Props {
+  title: string;
+  description: string;
+  url?: string; // ?  means optional
+}
+
+// Destructure props from Astro. props
+const { title, description, url = "#" } = Astro.props;
+---
+
+<article class="card">
+  <h2>{title}</h2>
+  <p>{description}</p>
+  <a href={url}>Read more →</a>
+</article>
+
+<style>
+  .card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .card h2 {
+    margin-top: 0;
+    color: #333;
+  }
+
+  .card a {
+    color: #0066cc;
+    text-decoration: none;
+  }
+
+  .card a:hover {
+    text-decoration: underline;
+  }
+</style>
