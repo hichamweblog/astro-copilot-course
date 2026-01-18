@@ -1,0 +1,25 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<article>
+  <header>
+    <h1>{title}</h1>
+    <slot name="meta" />
+    <!-- Named slot for metadata -->
+  </header>
+
+  <main>
+    <slot />
+    <!-- Default slot for main content -->
+  </main>
+
+  <footer>
+    <slot name="author" />
+    <!-- Named slot for author info -->
+  </footer>
+</article>

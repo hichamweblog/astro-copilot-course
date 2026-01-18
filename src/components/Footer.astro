@@ -1,0 +1,61 @@
+---
+const socialLinks = [
+  { name: "GitHub", url: "https://github.com/hichamdev" },
+  { name: "x", url: "https://x.com/hichamdev" },
+  { name: "LinkedIn", url: "https://www.linkedin.com/in/hichamdev/" },
+  { name: "Instagram", url: "https://www.instagram.com/hichamdev/" },
+];
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <p>© {currentYear} Hicham. All rights reserved.</p>
+  <ul class="social-links">
+    {
+      socialLinks.map((link) => (
+        <li>
+          <a href={link.url} target="_blank" rel="noopener noreferrer">
+            {link.name}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</footer>
+
+<style>
+  .footer {
+    background-color: #09090b;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    border-top: 1px solid #27272a;
+    margin-top: 3rem;
+  }
+
+  .footer p {
+    margin: 0;
+    color: #a1a1aa;
+    font-size: 0.875rem;
+  }
+
+  .social-links {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0 0;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .social-links a {
+    text-decoration: none;
+    color: #d4d4d8;
+    transition: color 0.2s;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .social-links a:hover {
+    color: #ffffff;
+  }
+</style>

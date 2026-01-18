@@ -1,12 +1,36 @@
 ---
+import Card from "../components/Card.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 const blogName = "My Dev Journey";
 const author = "Hicham";
+const featuredPosts = [
+  {
+    title: "Getting Started with Astro",
+    description: "Learn the basics of Astro and build your first site.",
+    url: "/blog/getting-started",
+  },
+  {
+    title: "Understanding Islands Architecture",
+    description: "Why shipping less JavaScript makes your site faster.",
+    url: "/blog/islands-architecture",
+  },
+  {
+    title: "Content Collections Deep Dive",
+    description: "Type-safe content management in Astro.",
+    url: "/blog/content-collections",
+  },
+];
 const currentYear = new Date().getFullYear();
 ---
 
 <BaseLayout>
   <h1>Welcome to {blogName}</h1>
-  <p>Written by {author}</p>
-  <footer>© {currentYear}</footer>
+  <p>A blog about web development and learning in public.</p>
+
+  <h2>Featured Posts</h2>
+  {
+    featuredPosts.map((post) => (
+      <Card title={post.title} description={post.description} url={post.url} />
+    ))
+  }
 </BaseLayout>
