@@ -2,16 +2,30 @@
 import Footer from "../components/Footer.astro";
 import Navigation from "../components/Navigation.astro";
 import "../styles/global.css";
+import Head from "../components/Head.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = "A blog about web development and learning in public.",
+} = Astro.props;
+
+// Create a formatted page title
+const pageTitle = title ? `${title} | My Astro Blog` : "My Astro Blog";
 ---
 
-<!doctype html>
+<!-- doctype html-->
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>My Astro Blog</title>
+    <Head title={pageTitle} description={description} />
   </head>
   <body>
     <Navigation />
@@ -21,5 +35,3 @@ import "../styles/global.css";
     <Footer />
   </body>
 </html>
-
-<style></style>

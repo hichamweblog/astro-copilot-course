@@ -30,7 +30,9 @@ export const posts = [
 ];
 ---
 
-<BaseLayout>
+<BaseLayout
+  title={pageTitle}
+  description="Thoughts on web development, learning, and building things.">
   <h1>{pageTitle}</h1>
   <p>Thoughts on web development, learning, and building things.</p>
 
@@ -38,7 +40,11 @@ export const posts = [
     {
       posts.map((post) => (
         <Card
-          date={post.date}
+          date={new Date(post.date).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })}
           tags={post.tags}
           title={post.title}
           description={post.description}

@@ -43,7 +43,9 @@ const { posts } = Astro.props;
 const { tag } = Astro.params;
 ---
 
-<BaseLayout>
+<BaseLayout
+  title={`Tag: "${tag}"`}
+  description={`Read all posts tagged with "${tag}".`}>
   <h1>Posts tagged with "{tag}"</h1>
   <p>Found {posts.length} post{posts.length !== 1 ? "s" : ""} with this tag.</p>
 
