@@ -1,0 +1,88 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+// This function tells Astro what pages to generate
+export function getStaticPaths() {
+  const posts = [
+    {
+      slug: "getting-started",
+      title: "Getting Started with Astro",
+      content:
+        "This is the full content of the getting started post.  In a real blog, this would be much longer and probably come from Markdown files.",
+      date: "2026-01-15",
+      author: "Hicham",
+    },
+    {
+      slug: "islands-architecture",
+      title: "Understanding Islands Architecture",
+      content:
+        "Islands architecture is a pattern where you render most of your page as static HTML, then hydrate only the interactive parts. This post explains why that matters.",
+      date: "2026-01-16",
+      author: "Hicham",
+    },
+    {
+      slug: "content-collections",
+      title: "Content Collections Deep Dive",
+      content:
+        "Content Collections let you organize and validate your content with TypeScript. They're a game-changer for content-heavy sites.",
+      date: "2026-01-17",
+      author: "Hicham",
+    },
+  ];
+
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+// Get the post data from props
+const { post } = Astro.props;
+---
+
+<BaseLayout>
+  <article>
+    <header>
+      <h1>{post.title}</h1>
+      <p class="meta">
+        <time datetime={post.date}>{post.date}</time>
+        <span>by {post.author}</span>
+      </p>
+    </header>
+
+    <div class="content">
+      <p>{post.content}</p>
+    </div>
+
+    <footer>
+      <a href="/blog">← Back to all posts</a>
+    </footer>
+  </article>
+</BaseLayout>
+
+<style>
+  article {
+    max-width: 65ch;
+    margin: 0 auto;
+  }
+
+  .meta {
+    color: #666;
+    font-size: 0.9rem;
+  }
+
+  .meta time {
+    margin-right: 1rem;
+  }
+
+  . content {
+    margin: 2rem 0;
+    line-height: 1.8;
+  }
+
+  footer {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+  }
+</style>

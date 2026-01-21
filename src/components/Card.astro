@@ -4,16 +4,28 @@ interface Props {
   title: string;
   description: string;
   url?: string;
+  date?: string;
+  tags?: string[];
 }
 
 // Destructure props from Astro. props
-const { title, description, url = "#" } = Astro.props;
+const { title, description, url = "#", date, tags = [] } = Astro.props;
 ---
 
 <article class="card">
+  <p class="date">{date}</p>
   <h2>{title}</h2>
   <p>{description}</p>
   <a href={url}>Read more →</a>
+  <ul class="tags">
+    {
+      tags.map((tag) => (
+        <li class="tag">
+          <a href={`/blog/tags/${tag}`}>{tag}</a>
+        </li>
+      ))
+    }
+  </ul>
 </article>
 
 <style>
@@ -26,7 +38,7 @@ const { title, description, url = "#" } = Astro.props;
 
   .card h2 {
     margin-top: 0;
-		color: #f0f0f0;
+    color: #f0f0f0;
   }
 
   .card a {
@@ -36,5 +48,25 @@ const { title, description, url = "#" } = Astro.props;
 
   .card a:hover {
     text-decoration: underline;
+  }
+  .date {
+    font-size: 0.85rem;
+    color: #999;
+    margin-bottom: 0rem;
+  }
+  .tags {
+    list-style: none;
+    padding: 0;
+    margin-top: 1rem;
+    display: flex;
+  }
+  .tag {
+    display: inline-block;
+    color: #f7f3f3;
+    border: 1px solid #ccc;
+
+    border-radius: 4px;
+    padding: 0.2rem 0.5rem;
+    margin-right: 0.5rem;
   }
 </style>

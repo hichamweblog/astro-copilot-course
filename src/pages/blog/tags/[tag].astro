@@ -1,0 +1,76 @@
+---
+import Card from "../../../components/Card.astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+
+export function getStaticPaths() {
+  const allPosts = [
+    {
+      title: "Getting Started with Astro",
+      description: "Learn the basics of the Astro framework.",
+      slug: "getting-started",
+      date: "2026-01-15",
+      tags: ["astro", "getting-started"],
+    },
+    {
+      title: "Understanding Islands Architecture",
+      description: "Why partial hydration changes everything.",
+      slug: "islands-architecture",
+      date: "2026-01-16",
+      tags: ["astro", "islands-architecture"],
+    },
+    {
+      title: "Content Collections Deep Dive",
+      description: "Type-safe content management in Astro.",
+      slug: "content-collections",
+      date: "2026-01-17",
+      tags: ["astro", "content-collections"],
+    },
+  ];
+
+  // Get unique tags
+  const uniqueTags = [...new Set(allPosts.flatMap((post) => post.tags))];
+
+  // Return one page per tag with all posts for that tag
+  return uniqueTags.map((tag) => ({
+    params: { tag },
+    props: {
+      posts: allPosts.filter((post) => post.tags.includes(tag)),
+    },
+  }));
+}
+
+const { posts } = Astro.props;
+const { tag } = Astro.params;
+---
+
+<BaseLayout>
+  <h1>Posts tagged with "{tag}"</h1>
+  <p>Found {posts.length} post{posts.length !== 1 ? "s" : ""} with this tag.</p>
+
+  <section class="posts">
+    {
+      posts.map((post) => (
+        <Card
+          date={post.date}
+          title={post.title}
+          description={post.description}
+          url={`/blog/${post.slug}`}
+        />
+      ))
+    }
+  </section>
+
+  <a href="/blog">← Back to all posts</a>
+</BaseLayout>
+
+<style>
+  h1 {
+    margin-bottom: 0.5rem;
+  }
+  p {
+    margin-bottom: 1.5rem;
+  }
+  .posts {
+    margin-top: 2rem;
+  }
+</style>

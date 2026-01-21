@@ -8,16 +8,19 @@ const featuredPosts = [
     title: "Getting Started with Astro",
     description: "Learn the basics of Astro and build your first site.",
     url: "/blog/getting-started",
+    tags: ["astro", "getting-started"],
   },
   {
     title: "Understanding Islands Architecture",
     description: "Why shipping less JavaScript makes your site faster.",
     url: "/blog/islands-architecture",
+    tags: ["astro", "islands-architecture"],
   },
   {
     title: "Content Collections Deep Dive",
     description: "Type-safe content management in Astro.",
     url: "/blog/content-collections",
+    tags: ["astro", "content-collections"],
   },
 ];
 const currentYear = new Date().getFullYear();
@@ -30,7 +33,12 @@ const currentYear = new Date().getFullYear();
   <h2>Featured Posts</h2>
   {
     featuredPosts.map((post) => (
-      <Card title={post.title} description={post.description} url={post.url} />
+      <Card
+        title={post.title}
+        description={post.description}
+        url={post.url}
+        tags={post.tags}
+      />
     ))
   }
 </BaseLayout>
