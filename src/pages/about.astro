@@ -5,8 +5,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 <BaseLayout
   title="About"
   description="Learn more about this blog and its author.">
-  <section>
-    <h1>About This Blog</h1>
+  <div class="prose-xl prose-slate dark:prose-invert max-w-none">
+    <h1 class="font-serif text-5xl lg:text-6xl text-(--color-text) mb-8">
+      About This Blog
+    </h1>
     <p>
       This blog is dedicated to sharing my journey and experiences in web
       development.
@@ -16,28 +18,14 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       practices.
     </p>
     <p>Feel free to explore the posts and leave your feedback!</p>
-  </section>
-  <section>
-    <h2>About Me</h2>
+
+    <h2 class="font-serif text-3xl lg:text-4xl text-(--color-text) mt-12 mb-6">
+      About Me
+    </h2>
     <p>
       I'm a passionate web developer with a love for learning and sharing
       knowledge.
     </p>
     <p>When I'm not coding, I enjoy hiking and photography.</p>
-  </section>
+  </div>
 </BaseLayout>
-<style>
-  section {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-  }
-
-  h1,
-  h2 {
-  }
-
-  p {
-    line-height: 1.6;
-  }
-</style>

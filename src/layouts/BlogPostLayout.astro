@@ -12,10 +12,13 @@ const { title, date, author, description } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
-  <article class="blog-post">
-    <header>
-      <h1>{title}</h1>
-      <p class="meta">
+  <article class="py-12 lg:py-20">
+    <header class="mb-12 pb-8 border-b border-(--color-border)">
+      <h1
+        class="font-serif text-5xl lg:text-6xl text-(--color-text) mb-6 leading-tight">
+        {title}
+      </h1>
+      <p class="text-xl text-(--color-text-muted) flex flex-wrap gap-4">
         <time datetime={date}
           >{
             new Date(date).toLocaleDateString("en-US", {
@@ -29,49 +32,17 @@ const { title, date, author, description } = Astro.props;
       </p>
     </header>
 
-    <div class="content">
+    <div
+      class="prose-xl prose-stone dark:prose-invert max-w-none leading-relaxed">
       <slot />
     </div>
 
-    <footer class="post-footer">
-      <a href="/blog">← Back to all posts</a>
+    <footer class="mt-16 pt-8 border-t border-(--color-border)">
+      <a
+        href="/blog"
+        class="text-(--color-accent) hover:text-(--color-accent-hover) no-underline font-medium">
+        ← Back to all posts
+      </a>
     </footer>
   </article>
 </BaseLayout>
-
-<style>
-  .blog-post {
-    max-width: 65ch;
-    margin: 0 auto;
-    padding: 2rem 1rem;
-  }
-
-  header {
-    margin-bottom: 2rem;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 1rem;
-  }
-
-  h1 {
-    margin-bottom: 0.5rem;
-  }
-
-  .meta {
-    color: #666;
-    font-size: 0.9rem;
-  }
-
-  .meta time {
-    margin-right: 1rem;
-  }
-
-  .content {
-    line-height: 1.8;
-  }
-
-  .post-footer {
-    margin-top: 3rem;
-    padding-top: 1rem;
-    border-top: 1px solid #eee;
-  }
-</style>

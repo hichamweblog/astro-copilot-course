@@ -33,10 +33,14 @@ export const posts = [
 <BaseLayout
   title={pageTitle}
   description="Thoughts on web development, learning, and building things.">
-  <h1>{pageTitle}</h1>
-  <p>Thoughts on web development, learning, and building things.</p>
+  <h1 class="font-serif text-5xl lg:text-6xl text-(--color-text) mb-6">
+    {pageTitle}
+  </h1>
+  <p class="text-xl text-(--color-text-muted) mb-12">
+    Thoughts on web development, learning, and building things.
+  </p>
 
-  <section class="posts">
+  <div class="space-y-8">
     {
       posts.map((post) => (
         <Card
@@ -52,11 +56,5 @@ export const posts = [
         />
       ))
     }
-  </section>
+  </div>
 </BaseLayout>
-
-<style>
-  .posts {
-    margin-top: 2rem;
-  }
-</style>

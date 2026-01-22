@@ -6,19 +6,25 @@ interface Props {
 const { title } = Astro.props;
 ---
 
-<article>
-  <header>
-    <h1>{title}</h1>
-    <slot name="meta" />
-    <!-- Named slot for metadata -->
+<article class="max-w-3xl mx-auto">
+  <header class="mb-12 pb-8 border-b border-(--color-border)">
+    <h1
+      class="font-serif text-4xl lg:text-5xl text-(--color-text) mb-4 leading-tight">
+      {title}
+    </h1>
+    <div class="text-lg text-(--color-text-muted)">
+      <slot name="meta" />
+      <!-- Named slot for metadata -->
+    </div>
   </header>
 
-  <main>
+  <main
+    class="prose prose-lg lg:prose-xl prose-slate dark:prose-invert max-w-none">
     <slot />
     <!-- Default slot for main content -->
   </main>
 
-  <footer>
+  <footer class="mt-12 pt-8 border-t border-(--color-border)">
     <slot name="author" />
     <!-- Named slot for author info -->
   </footer>

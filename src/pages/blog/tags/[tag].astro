@@ -46,10 +46,14 @@ const { tag } = Astro.params;
 <BaseLayout
   title={`Tag: "${tag}"`}
   description={`Read all posts tagged with "${tag}".`}>
-  <h1>Posts tagged with "{tag}"</h1>
-  <p>Found {posts.length} post{posts.length !== 1 ? "s" : ""} with this tag.</p>
+  <h1 class="font-serif text-4xl lg:text-5xl text-(--color-text) mb-4">
+    Posts tagged with "{tag}"
+  </h1>
+  <p class="text-xl text-(--color-text-muted) mb-12">
+    Found {posts.length} post{posts.length !== 1 ? "s" : ""} with this tag.
+  </p>
 
-  <section class="posts">
+  <div class="space-y-8 mb-12">
     {
       posts.map((post) => (
         <Card
@@ -60,19 +64,11 @@ const { tag } = Astro.params;
         />
       ))
     }
-  </section>
+  </div>
 
-  <a href="/blog">← Back to all posts</a>
+  <a
+    href="/blog"
+    class="text-(--color-accent) hover:text-(--color-accent-hover) no-underline font-medium"
+    >← Back to all posts</a
+  >
 </BaseLayout>
-
-<style>
-  h1 {
-    margin-bottom: 0.5rem;
-  }
-  p {
-    margin-bottom: 1.5rem;
-  }
-  .posts {
-    margin-top: 2rem;
-  }
-</style>

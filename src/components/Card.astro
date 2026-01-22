@@ -12,61 +12,34 @@ interface Props {
 const { title, description, url = "#", date, tags = [] } = Astro.props;
 ---
 
-<article class="card">
-  <p class="date">{date}</p>
-  <h2>{title}</h2>
-  <p>{description}</p>
-  <a href={url}>Read more →</a>
-  <ul class="tags">
+<article
+  class="border border-(--color-border) rounded-lg p-8 mb-6 shadow-sm bg-(--color-card-bg) transition-shadow hover:shadow-md">
+  <p class="text-sm text-(--color-text-muted) mb-2 mt-0">{date}</p>
+  <h2
+    class="font-serif text-2xl lg:text-3xl text-(--color-text) mt-0 mb-3 font-bold dark:font-extrabold">
+    <a
+      href={url}
+      class="text-(--color-accent) hover:text-(--color-accent-hover) no-underline dark:text-(--color-accent) dark:drop-shadow-[0_0_8px_rgba(129,140,248,0.5)]">
+      {title}
+    </a>
+  </h2>
+  <p class="text-(--color-text-muted) mb-4">{description}</p>
+  <a
+    href={url}
+    class="text-(--color-accent) hover:text-(--color-accent-hover) no-underline font-medium">
+    Read more →
+  </a>
+  <ul class="flex flex-wrap gap-2 list-none m-0 p-0 mt-4">
     {
       tags.map((tag) => (
-        <li class="tag">
-          <a href={`/blog/tags/${tag}`}>{tag}</a>
+        <li class="border border-(--color-border) rounded px-3 py-1 text-sm">
+          <a
+            href={`/blog/tags/${tag}`}
+            class="text-(--color-text-muted) hover:text-(--color-text) no-underline">
+            {tag}
+          </a>
         </li>
       ))
     }
   </ul>
 </article>
-
-<style>
-  .card {
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin-bottom: 1rem;
-  }
-
-  .card h2 {
-    margin-top: 0;
-    color: #f0f0f0;
-  }
-
-  .card a {
-    color: #0066cc;
-    text-decoration: none;
-  }
-
-  .card a:hover {
-    text-decoration: underline;
-  }
-  .date {
-    font-size: 0.85rem;
-    color: #999;
-    margin-bottom: 0rem;
-  }
-  .tags {
-    list-style: none;
-    padding: 0;
-    margin-top: 1rem;
-    display: flex;
-  }
-  .tag {
-    display: inline-block;
-    color: #f7f3f3;
-    border: 1px solid #ccc;
-
-    border-radius: 4px;
-    padding: 0.2rem 0.5rem;
-    margin-right: 0.5rem;
-  }
-</style>

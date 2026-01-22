@@ -29,18 +29,32 @@ const currentYear = new Date().getFullYear();
 <BaseLayout
   title="Home"
   description={`Blog by ${author} about web development and learning in public.`}>
-  <h1>Welcome to {blogName}</h1>
-  <p>A blog about web development and learning in public.</p>
+  <div class="py-20 lg:py-32 text-center">
+    <h1
+      class="font-serif text-5xl lg:text-6xl text-(--color-text) mb-6 leading-tight">
+      Welcome to {blogName}
+    </h1>
+    <p
+      class="text-xl lg:text-2xl text-(--color-text-muted) max-w-2xl mx-auto leading-relaxed">
+      A blog about web development and learning in public.
+    </p>
+  </div>
 
-  <h2>Featured Posts</h2>
-  {
-    featuredPosts.map((post) => (
-      <Card
-        title={post.title}
-        description={post.description}
-        url={post.url}
-        tags={post.tags}
-      />
-    ))
-  }
+  <div class="py-16 lg:py-24">
+    <h2 class="font-serif text-3xl lg:text-4xl text-(--color-text) mb-12">
+      Featured Posts
+    </h2>
+    <section>
+      {
+        featuredPosts.map((post) => (
+          <Card
+            title={post.title}
+            description={post.description}
+            url={post.url}
+            tags={post.tags}
+          />
+        ))
+      }
+    </section>
+  </div>
 </BaseLayout>

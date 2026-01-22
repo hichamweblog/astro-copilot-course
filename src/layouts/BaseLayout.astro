@@ -19,7 +19,7 @@ const pageTitle = title ? `${title} | My Astro Blog` : "My Astro Blog";
 ---
 
 <!-- doctype html-->
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -27,11 +27,34 @@ const pageTitle = title ? `${title} | My Astro Blog` : "My Astro Blog";
     <meta name="generator" content={Astro.generator} />
     <Head title={pageTitle} description={description} />
   </head>
-  <body>
+  <body class="bg-(--color-bg) text-(--color-text) font-sans min-h-screen flex flex-col transition-colors duration-300">
     <Navigation />
-    <main>
+    <main class="flex-1 w-full max-w-4xl mx-auto px-6 py-12 lg:py-20">
       <slot />
     </main>
     <Footer />
+    <script is:inline>
+      // Check for saved theme preference or system preference
+      const getTheme = () => {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+          return localStorage.getItem('theme');
+        }
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      };
+
+      const setTheme = (theme) => {
+        document.documentElement.classList.toggle('dark', theme === 'dark');
+        localStorage.setItem('theme', theme);
+      };
+
+      // Initialize theme
+      setTheme(getTheme());
+
+      // Toggle function for button
+      window.toggleTheme = () => {
+        const current = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+        setTheme(current === 'dark' ? 'light' : 'dark');
+      };
+    </script>
   </body>
 </html>
